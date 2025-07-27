@@ -18,13 +18,24 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: "",
-    });
-    event.preventDefault();
+  event.preventDefault(); 
+
+
+  if (note.title.trim().length < 3 || note.content.trim().length < 3) {
+    alert("Both title and content must be at least 3 characters long.");
+    return; 
   }
+
+
+  props.onAdd(note);
+
+  // Clear the form
+  setNote({
+    title: "",
+    content: "",
+  });
+}
+
 
   return (
     <div className="note-form">
